@@ -222,11 +222,6 @@ body.menu-open .mm-link:nth-child(5){transition-delay:.43s} body.menu-open .mm-l
 .pr-thumb .arch{ width:76px;aspect-ratio:3/3.6 }
 .pr-thumb img{width:100%;height:100%;object-fit:cover}
 
-.float-view{ position:fixed;top:0;left:0;z-index:80;width:290px;aspect-ratio:4/3.4;border-radius:999px 999px 12px 12px;
-  overflow:hidden;pointer-events:none;opacity:0;transform:scale(.85);box-shadow:0 30px 60px rgba(10,8,4,.45);display:none }
-.float-view img{ width:100%;height:100%;object-fit:cover }
-@media (pointer:fine){ .float-view{display:block} }
-
 /* ══════════════════════════════════════════════════
    FEATURED — full-bleed
 ══════════════════════════════════════════════════ */
@@ -688,9 +683,6 @@ a.c-val:hover{ color:var(--gold) }
       </div>
     </div>
   </section>
-
-  <!-- floating image preview that follows the cursor over the project list -->
-  <div class="float-view" id="floatView" aria-hidden="true"><img id="floatImg" src="" alt=""></div>
 
   <!-- ══════════ FEATURED — Canal Valley ══════════ -->
   <section class="featured" id="featured">
@@ -1240,29 +1232,6 @@ a.c-val:hover{ color:var(--gold) }
     setTimeout(function(){ scrollToEl('#contact'); }, 60);
     if (p) toast('Enquiry started for ' + p.name + ' — leave your number below and we\u2019ll call you back.');
   });
-
-  /* ── cursor-following project preview ──────────────── */
-  var floatView = document.getElementById('floatView'), floatImg = document.getElementById('floatImg');
-  var list = document.getElementById('projectList');
-  var fx = 0, fy = 0, ftx = 0, fty = 0, floatOn = false;
-  function hideFloat(){ if (!floatOn) return; floatOn = false; gsap.to(floatView, { opacity:0, duration:.35, ease:'power2.out' }); }
-  if (finePointer && !reduce && list){
-    list.addEventListener('mousemove', function(e){ ftx = e.clientX + 28; fty = e.clientY - 110; });
-    list.querySelectorAll('.project-row').forEach(function(r){
-      r.addEventListener('mouseenter', function(){
-        if (document.body.classList.contains('modal-open')) return;
-        floatImg.onerror = function(){ floatImg.onerror = null; floatImg.src = 'https://picsum.photos/seed/' + r.dataset.seed + '/800/680.jpg'; };
-        floatImg.src = r.dataset.img;
-        if (!floatOn){ floatOn = true; gsap.to(floatView, { opacity:1, duration:.45, ease:'power3.out' }); }
-      });
-    });
-    list.addEventListener('mouseleave', hideFloat);
-    (function fLoop(){
-      fx += (ftx - fx) * .13; fy += (fty - fy) * .13;
-      floatView.style.transform = 'translate(' + fx + 'px,' + fy + 'px) scale(' + (floatOn ? 1 : .85) + ')';
-      requestAnimationFrame(fLoop);
-    })();
-  }
 
   /* ── services accordion (single-open) ──────────────── */
   var accItems = Array.prototype.slice.call(document.querySelectorAll('.acc-item'));

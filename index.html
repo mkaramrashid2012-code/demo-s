@@ -1180,11 +1180,11 @@ a.c-val:hover{ color:var(--gold) }
       <h2 class="sec-title">Latest from our <em>Blog</em></h2>
       <p class="lead" style="color:rgba(243,237,225,.72);">Stay informed with expert insights on real estate trends, investment tips, and market analysis.</p>
       
-      <div class="blog-grid">
-        <!-- Blog 1 -->
+      <div class="blog-grid" id="blogGrid">
+        <!-- Blog posts will be loaded dynamically from WordPress API -->
         <article class="blog-card">
           <div class="blog-image">
-            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-investment-tips.jpg" alt="Real Estate Investment Tips">
+            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-investment-tips.jpg" alt="Real Estate Investment Tips" loading="lazy">
             <span class="blog-category">Investment</span>
           </div>
           <div class="blog-content">
@@ -1194,14 +1194,14 @@ a.c-val:hover{ color:var(--gold) }
             </div>
             <h3 class="blog-title">Top 5 Real Estate Investment Tips for 2024</h3>
             <p class="blog-excerpt">Discover the most profitable strategies for investing in Pakistan's real estate market this year. Learn about emerging locations and timing...</p>
-            <a href="https://786realestates.com/blogs/top-5-real-estate-investment-tips-for-2024/" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+            <a href="https://786realestates.com/blogs/top-5-real-estate-investment-tips-for-2024/" class="blog-link" target="_blank" rel="noopener">Read More <i data-lucide="arrow-right"></i></a>
           </div>
         </article>
 
         <!-- Blog 2 -->
         <article class="blog-card">
           <div class="blog-image">
-            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-market-trends.jpg" alt="Lahore Market Trends">
+            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-market-trends.jpg" alt="Lahore Market Trends" loading="lazy">
             <span class="blog-category">Market Analysis</span>
           </div>
           <div class="blog-content">
@@ -1211,14 +1211,14 @@ a.c-val:hover{ color:var(--gold) }
             </div>
             <h3 class="blog-title">Lahore Real Estate Market Trends: Q3 2024 Report</h3>
             <p class="blog-excerpt">An in-depth analysis of property prices in DHA, Bahria Town, and other prime areas. Find out which sectors are seeing the highest growth...</p>
-            <a href="https://786realestates.com/blogs/lahore-market-trends-q3-2024/" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+            <a href="https://786realestates.com/blogs/lahore-market-trends-q3-2024/" class="blog-link" target="_blank" rel="noopener">Read More <i data-lucide="arrow-right"></i></a>
           </div>
         </article>
 
         <!-- Blog 3 -->
         <article class="blog-card">
           <div class="blog-image">
-            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-buying-guide.jpg" alt="First Time Home Buyer Guide">
+            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-buying-guide.jpg" alt="First Time Home Buyer Guide" loading="lazy">
             <span class="blog-category">Buying Guide</span>
           </div>
           <div class="blog-content">
@@ -1228,13 +1228,13 @@ a.c-val:hover{ color:var(--gold) }
             </div>
             <h3 class="blog-title">First-Time Home Buyer's Complete Guide in Pakistan</h3>
             <p class="blog-excerpt">Everything you need to know before purchasing your first property. From legal documentation to financing options and negotiation tactics...</p>
-            <a href="https://786realestates.com/blogs/first-time-home-buyer-guide-pakistan/" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+            <a href="https://786realestates.com/blogs/first-time-home-buyer-guide-pakistan/" class="blog-link" target="_blank" rel="noopener">Read More <i data-lucide="arrow-right"></i></a>
           </div>
         </article>
       </div>
       
       <div style="text-align:center;margin-top:48px;">
-        <a href="https://786realestates.com/blogs/" class="btn" style="background:var(--gold);color:var(--ink);">View All Articles <i data-lucide="arrow-right"></i></a>
+        <a href="https://786realestates.com/blogs/" class="btn" style="background:var(--gold);color:var(--ink);" target="_blank" rel="noopener">View All Articles <i data-lucide="arrow-right"></i></a>
       </div>
     </div>
   </section>
@@ -1339,6 +1339,57 @@ a.c-val:hover{ color:var(--gold) }
   if (reduce) document.body.classList.add('reduced');
   if (window.lucide) lucide.createIcons();
   gsap.registerPlugin(ScrollTrigger);
+
+  /* ── Load blog posts from WordPress API ─────────────────── */
+  function loadBlogPosts() {
+    var blogGrid = document.getElementById('blogGrid');
+    if (!blogGrid) return;
+    
+    fetch('https://786realestates.com/wp-json/wp/v2/posts?per_page=6&_embed')
+      .then(function(response) { return response.json(); })
+      .then(function(posts) {
+        if (!posts || posts.length === 0) return;
+        
+        var html = '';
+        posts.forEach(function(post) {
+          var date = new Date(post.date);
+          var dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          var excerpt = post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+          var category = post.categories && post.categories.length > 0 ? 'Uncategorized' : 'News';
+          var imageUrl = 'https://786realestates.com/wp-content/uploads/2024/09/blog-default.jpg';
+          
+          // Try to get featured image if available
+          if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
+            imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
+          }
+          
+          html += '<article class="blog-card">';
+          html += '  <div class="blog-image">';
+          html += '    <img src="' + imageUrl + '" alt="' + post.title.rendered.replace(/"/g, '&quot;') + '" loading="lazy">';
+          html += '    <span class="blog-category">' + category + '</span>';
+          html += '  </div>';
+          html += '  <div class="blog-content">';
+          html += '    <div class="blog-meta">';
+          html += '      <span><i data-lucide="calendar"></i> ' + dateStr + '</span>';
+          html += '      <span><i data-lucide="clock"></i> 5 min read</span>';
+          html += '    </div>';
+          html += '    <h3 class="blog-title">' + post.title.rendered + '</h3>';
+          html += '    <p class="blog-excerpt">' + excerpt + '</p>';
+          html += '    <a href="' + post.link + '" class="blog-link" target="_blank" rel="noopener">Read More <i data-lucide="arrow-right"></i></a>';
+          html += '  </div>';
+          html += '</article>';
+        });
+        
+        blogGrid.innerHTML = html;
+        if (window.lucide) lucide.createIcons();
+      })
+      .catch(function(err) {
+        console.log('Blog posts loaded with fallback content');
+      });
+  }
+  
+  // Load blog posts after a short delay
+  setTimeout(loadBlogPosts, 500);
 
   /* ── smooth scroll (Lenis) ─────────────────────────── */
   var lenis = null;

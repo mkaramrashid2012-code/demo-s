@@ -358,6 +358,58 @@ a.c-val:hover{ color:var(--gold) }
 .map-card .btn{ padding:11px 18px }
 
 /* ══════════════════════════════════════════════════
+   PROPERTY LISTINGS
+══════════════════════════════════════════════════ */
+.listings-grid{ display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,3.4vw,44px);margin-top:48px }
+.listing-card{ background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease) }
+.listing-card:hover{ transform:translateY(-8px);box-shadow:0 24px 56px rgba(22,18,9,.12) }
+.listing-slider{ position:relative;height:260px;overflow:hidden;background:var(--cream-2) }
+.listing-images{ width:100%;height:100%;position:relative }
+.listing-images img{ position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease) }
+.listing-images img.active{ opacity:1 }
+.slide-btn{ position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:rgba(251,248,241,.92);border:1px solid var(--line);display:grid;place-items:center;z-index:2;transition:background .3s,color .3s,border-color .3s }
+.slide-btn:hover{ background:var(--gold);border-color:var(--gold);color:var(--ink) }
+.slide-btn.prev{ left:14px }
+.slide-btn.next{ right:14px }
+.slide-btn .lucide{ width:18px;height:18px }
+.listing-badge{ position:absolute;top:14px;left:14px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;z-index:2 }
+.listing-badge.hot{ background:var(--terra) }
+.listing-badge.new{ background:var(--gold);color:var(--ink) }
+.listing-info{ padding:22px }
+.listing-header{ display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap }
+.listing-category{ font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(176,138,69,.4);padding:5px 11px;border-radius:999px }
+.listing-price{ font-family:var(--f-display);font-weight:600;font-size:1.15rem;color:var(--ink) }
+.listing-title{ font-family:var(--f-display);font-weight:400;font-size:1.24rem;line-height:1.35;letter-spacing:-.01em;margin-bottom:8px }
+.listing-location{ display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--dim);margin-bottom:16px }
+.listing-location .lucide{ width:14px;height:14px;color:var(--gold) }
+.listing-specs{ display:flex;gap:16px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--line);margin-bottom:18px }
+.listing-specs span{ display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--dim) }
+.listing-specs .lucide{ width:14px;height:14px;color:var(--gold) }
+.btn-view{ width:100%;justify-content:center;padding:13px 20px;background:var(--ink);color:var(--cream) }
+.btn-view:hover{ background:var(--gold);color:var(--ink) }
+
+/* ══════════════════════════════════════════════════
+   BLOG SECTION
+══════════════════════════════════════════════════ */
+.blog-grid{ display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,3.4vw,44px);margin-top:48px }
+.blog-card{ background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease) }
+.blog-card:hover{ transform:translateY(-8px);box-shadow:0 24px 56px rgba(22,18,9,.12) }
+.blog-image{ position:relative;height:220px;overflow:hidden;background:var(--cream-2) }
+.blog-image img{ width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease) }
+.blog-card:hover .blog-image img{ transform:scale(1.06) }
+.blog-category{ position:absolute;top:14px;left:14px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px }
+.blog-content{ padding:22px }
+.blog-meta{ display:flex;gap:16px;margin-bottom:12px;font-family:var(--f-mono);font-size:9px;letter-spacing:.08em;color:var(--dim) }
+.blog-meta span{ display:flex;align-items:center;gap:6px }
+.blog-meta .lucide{ width:13px;height:13px;color:var(--gold) }
+.blog-title{ font-family:var(--f-display);font-weight:400;font-size:1.24rem;line-height:1.35;letter-spacing:-.01em;margin-bottom:12px }
+.blog-excerpt{ color:var(--dim);font-size:.95rem;line-height:1.7;margin-bottom:18px }
+.blog-link{ display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(176,138,69,.4);padding-bottom:3px;transition:color .3s,border-color .3s }
+.blog-link:hover{ color:var(--ink);border-color:var(--ink) }
+.blog-link .lucide{ width:14px;height:14px;transition:transform .3s var(--ease) }
+.blog-link:hover .lucide{ transform:translateX(4px) }
+
+/* ══════════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════════ */
 .footer{ background:var(--ink);color:var(--cream);padding:clamp(70px,9vw,110px) var(--gutter) 34px;overflow:hidden }
@@ -500,7 +552,7 @@ a.c-val:hover{ color:var(--gold) }
     <span><span class="brand-name">786</span><span class="brand-tag">Real Estate Advisor &amp; Developers</span></span>
   </a>
   <nav class="nav-links" aria-label="Primary">
-    <a href="#firm">The Firm</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#people">Our Team</a><a href="#contact">Contact</a>
+    <a href="#firm">The Firm</a><a href="#projects">Projects</a><a href="#listings">Listings</a><a href="#blogs">Blog</a><a href="#services">Services</a><a href="#contact">Contact</a>
   </nav>
   <a class="btn" href="#contact">Book a Visit <i data-lucide="arrow-up-right"></i></a>
   <button class="burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -511,9 +563,9 @@ a.c-val:hover{ color:var(--gold) }
   <nav aria-label="Mobile">
     <a class="mm-link" href="#firm"><small>01</small>The Firm</a>
     <a class="mm-link" href="#projects"><small>02</small>Projects</a>
-    <a class="mm-link" href="#services"><small>03</small>Services</a>
-    <a class="mm-link" href="#people"><small>04</small>Our Team</a>
-    <a class="mm-link" href="#voices"><small>05</small>Voices</a>
+    <a class="mm-link" href="#listings"><small>03</small>Listings</a>
+    <a class="mm-link" href="#blogs"><small>04</small>Blog</a>
+    <a class="mm-link" href="#services"><small>05</small>Services</a>
     <a class="mm-link" href="#contact"><small>06</small>Contact</a>
   </nav>
   <div class="mmenu-foot">
@@ -993,6 +1045,199 @@ a.c-val:hover{ color:var(--gold) }
       </div>
     </div>
   </section>
+
+  <!-- ══════════ PROPERTY LISTINGS ══════════ -->
+  <section class="sec section--cream" id="listings">
+    <div class="wrap">
+      <span class="kicker"><i data-lucide="building-2"></i> Featured Properties</span>
+      <h2 class="sec-title">Latest <em>Property Listings</em></h2>
+      <p class="lead">Explore our curated selection of premium residential and commercial properties across Faisalabad and Lahore.</p>
+      
+      <div class="listings-grid">
+        <!-- Property 1: DHA Lahore -->
+        <div class="listing-card" data-category="residential" data-type="house" data-price="85000000">
+          <div class="listing-slider">
+            <button class="slide-btn prev" aria-label="Previous image"><i data-lucide="chevron-left"></i></button>
+            <div class="listing-images">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/dha-lahore-house-1.jpg" alt="DHA Lahore House" class="active">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/dha-lahore-house-2.jpg" alt="DHA Lahore House Interior">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/dha-lahore-house-3.jpg" alt="DHA Lahore House Exterior">
+            </div>
+            <button class="slide-btn next" aria-label="Next image"><i data-lucide="chevron-right"></i></button>
+            <span class="listing-badge">For Sale</span>
+          </div>
+          <div class="listing-info">
+            <div class="listing-header">
+              <span class="listing-category">Residential</span>
+              <span class="listing-price">PKR 8.5 Crore</span>
+            </div>
+            <h3 class="listing-title">Luxury 1 Kanal House in DHA Lahore Phase 6</h3>
+            <p class="listing-location"><i data-lucide="map-pin"></i> DHA Phase 6, Lahore</p>
+            <div class="listing-specs">
+              <span><i data-lucide="maximize"></i> 1 Kanal</span>
+              <span><i data-lucide="bed"></i> 5 Beds</span>
+              <span><i data-lucide="bath"></i> 6 Baths</span>
+            </div>
+            <button class="btn btn-view" data-project="dha-lahore">View Details <i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Property 2: Bahria Town -->
+        <div class="listing-card" data-category="residential" data-type="plot" data-price="45000000">
+          <div class="listing-slider">
+            <button class="slide-btn prev" aria-label="Previous image"><i data-lucide="chevron-left"></i></button>
+            <div class="listing-images">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/bahria-town-plot-1.jpg" alt="Bahria Town Plot" class="active">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/bahria-town-plot-2.jpg" alt="Bahria Town Location">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/bahria-town-plot-3.jpg" alt="Bahria Town Aerial View">
+            </div>
+            <button class="slide-btn next" aria-label="Next image"><i data-lucide="chevron-right"></i></button>
+            <span class="listing-badge hot">Hot Deal</span>
+          </div>
+          <div class="listing-info">
+            <div class="listing-header">
+              <span class="listing-category">Residential Plot</span>
+              <span class="listing-price">PKR 4.5 Crore</span>
+            </div>
+            <h3 class="listing-title">10 Marla Prime Location Plot in Bahria Town</h3>
+            <p class="listing-location"><i data-lucide="map-pin"></i> Bahria Town, Lahore</p>
+            <div class="listing-specs">
+              <span><i data-lucide="maximize"></i> 10 Marla</span>
+              <span><i data-lucide="compass"></i> Corner</span>
+              <span><i data-lucide="file-check"></i> Approved</span>
+            </div>
+            <button class="btn btn-view" data-project="bahria-plot">View Details <i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Property 3: Faisalabad Commercial -->
+        <div class="listing-card" data-category="commercial" data-type="shop" data-price="120000000">
+          <div class="listing-slider">
+            <button class="slide-btn prev" aria-label="Previous image"><i data-lucide="chevron-left"></i></button>
+            <div class="listing-images">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/faisalabad-commercial-1.jpg" alt="Faisalabad Commercial Plaza" class="active">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/faisalabad-commercial-2.jpg" alt="Commercial Shop Interior">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/faisalabad-commercial-3.jpg" alt="Plaza Exterior">
+            </div>
+            <button class="slide-btn next" aria-label="Next image"><i data-lucide="chevron-right"></i></button>
+            <span class="listing-badge">For Sale</span>
+          </div>
+          <div class="listing-info">
+            <div class="listing-header">
+              <span class="listing-category">Commercial</span>
+              <span class="listing-price">PKR 12 Crore</span>
+            </div>
+            <h3 class="listing-title">Prime Commercial Shop in Satellite Town Plaza</h3>
+            <p class="listing-location"><i data-lucide="map-pin"></i> Satellite Town, Faisalabad</p>
+            <div class="listing-specs">
+              <span><i data-lucide="maximize"></i> 800 sq.ft</span>
+              <span><i data-lucide="store"></i> Ground Floor</span>
+              <span><i data-lucide="trending-up"></i> High ROI</span>
+            </div>
+            <button class="btn btn-view" data-project="satellite-shop">View Details <i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Property 4: Gulberg Lahore -->
+        <div class="listing-card" data-category="residential" data-type="apartment" data-price="65000000">
+          <div class="listing-slider">
+            <button class="slide-btn prev" aria-label="Previous image"><i data-lucide="chevron-left"></i></button>
+            <div class="listing-images">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/gulberg-apartment-1.jpg" alt="Gulberg Apartment" class="active">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/gulberg-apartment-2.jpg" alt="Apartment Living Room">
+              <img src="https://786realestates.com/wp-content/uploads/2024/09/gulberg-apartment-3.jpg" alt="Apartment Building">
+            </div>
+            <button class="slide-btn next" aria-label="Next image"><i data-lucide="chevron-right"></i></button>
+            <span class="listing-badge new">New Listing</span>
+          </div>
+          <div class="listing-info">
+            <div class="listing-header">
+              <span class="listing-category">Apartment</span>
+              <span class="listing-price">PKR 6.5 Crore</span>
+            </div>
+            <h3 class="listing-title">Luxury 3 Bed Apartment in Gulberg III</h3>
+            <p class="listing-location"><i data-lucide="map-pin"></i> Gulberg III, Lahore</p>
+            <div class="listing-specs">
+              <span><i data-lucide="maximize"></i> 2200 sq.ft</span>
+              <span><i data-lucide="bed"></i> 3 Beds</span>
+              <span><i data-lucide="car"></i> 2 Parking</span>
+            </div>
+            <button class="btn btn-view" data-project="gulberg-apt">View Details <i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align:center;margin-top:48px;">
+        <a href="https://786realestates.com/project-listening/" class="btn btn--gold">View All Properties <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ BLOGS SECTION ══════════ -->
+  <section class="sec section--ink" id="blogs">
+    <div class="wrap">
+      <span class="kicker" style="color:var(--gold);"><i data-lucide="newspaper"></i> Insights & Updates</span>
+      <h2 class="sec-title">Latest from our <em>Blog</em></h2>
+      <p class="lead" style="color:rgba(243,237,225,.72);">Stay informed with expert insights on real estate trends, investment tips, and market analysis.</p>
+      
+      <div class="blog-grid">
+        <!-- Blog 1 -->
+        <article class="blog-card">
+          <div class="blog-image">
+            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-investment-tips.jpg" alt="Real Estate Investment Tips">
+            <span class="blog-category">Investment</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i data-lucide="calendar"></i> Sep 15, 2024</span>
+              <span><i data-lucide="clock"></i> 5 min read</span>
+            </div>
+            <h3 class="blog-title">Top 5 Real Estate Investment Tips for 2024</h3>
+            <p class="blog-excerpt">Discover the most profitable strategies for investing in Pakistan's real estate market this year. Learn about emerging locations and timing...</p>
+            <a href="https://786realestates.com/blogs/top-5-real-estate-investment-tips-for-2024/" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="blog-card">
+          <div class="blog-image">
+            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-market-trends.jpg" alt="Lahore Market Trends">
+            <span class="blog-category">Market Analysis</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i data-lucide="calendar"></i> Sep 10, 2024</span>
+              <span><i data-lucide="clock"></i> 4 min read</span>
+            </div>
+            <h3 class="blog-title">Lahore Real Estate Market Trends: Q3 2024 Report</h3>
+            <p class="blog-excerpt">An in-depth analysis of property prices in DHA, Bahria Town, and other prime areas. Find out which sectors are seeing the highest growth...</p>
+            <a href="https://786realestates.com/blogs/lahore-market-trends-q3-2024/" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="blog-card">
+          <div class="blog-image">
+            <img src="https://786realestates.com/wp-content/uploads/2024/09/blog-buying-guide.jpg" alt="First Time Home Buyer Guide">
+            <span class="blog-category">Buying Guide</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i data-lucide="calendar"></i> Sep 5, 2024</span>
+              <span><i data-lucide="clock"></i> 6 min read</span>
+            </div>
+            <h3 class="blog-title">First-Time Home Buyer's Complete Guide in Pakistan</h3>
+            <p class="blog-excerpt">Everything you need to know before purchasing your first property. From legal documentation to financing options and negotiation tactics...</p>
+            <a href="https://786realestates.com/blogs/first-time-home-buyer-guide-pakistan/" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+      
+      <div style="text-align:center;margin-top:48px;">
+        <a href="https://786realestates.com/blogs/" class="btn" style="background:var(--gold);color:var(--ink);">View All Articles <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ══════════ PROJECT MODAL ══════════ -->
@@ -1299,6 +1544,38 @@ a.c-val:hover{ color:var(--gold) }
   /* ── back to top ───────────────────────────────────── */
   document.getElementById('toTop').addEventListener('click', function(){
     if (lenis) lenis.scrollTo(0, { duration: 1.6 }); else scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* ── property listing image sliders ────────────────── */
+  document.querySelectorAll('.listing-slider').forEach(function(slider){
+    var images = slider.querySelectorAll('.listing-images img');
+    var prevBtn = slider.querySelector('.slide-btn.prev');
+    var nextBtn = slider.querySelector('.slide-btn.next');
+    var currentIndex = 0;
+    
+    function showImage(index){
+      images.forEach(function(img, i){ img.classList.toggle('active', i === index); });
+    }
+    
+    prevBtn.addEventListener('click', function(){
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    });
+    
+    nextBtn.addEventListener('click', function(){
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    });
+  });
+
+  /* ── blog card hover animations ────────────────────── */
+  document.querySelectorAll('.blog-card').forEach(function(card){
+    card.addEventListener('mouseenter', function(){
+      gsap.to(this, { y:-8, boxShadow:'0 24px 56px rgba(22,18,9,.12)', duration:.4, ease:'power3.out' });
+    });
+    card.addEventListener('mouseleave', function(){
+      gsap.to(this, { y:0, boxShadow:'none', duration:.4, ease:'power3.out' });
+    });
   });
 
   /* ══════════ SCROLL ANIMATION LAYER ══════════ */
